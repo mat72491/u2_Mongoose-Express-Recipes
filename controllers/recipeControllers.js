@@ -27,12 +27,13 @@ const getRecipeById = async (req, res) => {
   };
 
   const createRecipe = async (req, res) => {
+    console.log(req.body)
     try {
       const recipe = await new Recipe(req.body);
       await recipe.save();
       return res.status(201).json({ recipe });
     } catch (e) {
-      return res.status(500).json({ error: error.message });
+      return res.status(500).json({ error: e.message });
     }
   };
 
